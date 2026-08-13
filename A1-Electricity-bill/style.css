@@ -1,0 +1,28 @@
+body {
+    background: linear-gradient(135deg, #e3f2fd, #ffffff);
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+.card {
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.card-header {
+    padding: 20px;
+}
+
+.form-control {
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.btn {
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.alert {
+    border-radius: 10px;
+}
