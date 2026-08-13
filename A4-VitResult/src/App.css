@@ -1,0 +1,429 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Inter, Arial, sans-serif;
+  background: #f3f6fb;
+  color: #172033;
+}
+
+button, input, select {
+  font: inherit;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+.header {
+  background: #ffffff;
+  border-bottom: 1px solid #e3e8f0;
+  padding: 20px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #174ea6;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.logo h1 {
+  font-size: 22px;
+}
+
+.logo p {
+  color: #718096;
+  font-size: 13px;
+  margin-top: 3px;
+}
+
+.badge {
+  background: #e8f0fe;
+  color: #174ea6;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.container {
+  width: min(1100px, 92%);
+  margin: 35px auto;
+}
+
+.card {
+  background: white;
+  border: 1px solid #e3e8f0;
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 25px;
+  box-shadow: 0 5px 20px rgba(20, 40, 80, 0.05);
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.section-heading h2 {
+  font-size: 20px;
+}
+
+.section-heading p {
+  color: #718096;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+.formula {
+  background: #f0f5ff;
+  color: #174ea6;
+  padding: 9px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.student-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d9e0ea;
+  border-radius: 9px;
+  outline: none;
+  background: white;
+  color: #172033;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #174ea6;
+  box-shadow: 0 0 0 3px rgba(23, 78, 166, 0.1);
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-align: left;
+  padding: 14px;
+  background: #f7f9fc;
+  color: #667085;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+th span {
+  display: block;
+  font-size: 10px;
+  color: #a0aec0;
+  margin-top: 3px;
+}
+
+td {
+  padding: 16px 14px;
+  border-bottom: 1px solid #edf0f5;
+}
+
+td strong {
+  display: block;
+}
+
+td small {
+  display: block;
+  color: #8a94a6;
+  margin-top: 4px;
+}
+
+td input {
+  width: 90px;
+  padding: 9px;
+  border: 1px solid #d9e0ea;
+  border-radius: 7px;
+  text-align: center;
+  outline: none;
+}
+
+td input:focus {
+  border-color: #174ea6;
+}
+
+.final-mark {
+  color: #174ea6;
+}
+
+.grade {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: #e9f7ef;
+  color: #16834d;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.grade.fail {
+  background: #fdecec;
+  color: #d92d20;
+}
+
+.button-area {
+  display: flex;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.calculate-button,
+.reset-button {
+  border: none;
+  border-radius: 9px;
+  padding: 12px 22px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.calculate-button {
+  background: #174ea6;
+  color: white;
+}
+
+.calculate-button:hover {
+  background: #123d83;
+}
+
+.reset-button {
+  background: #eef1f5;
+  color: #475467;
+}
+
+.result-section {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #e3e8f0;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(20, 40, 80, 0.05);
+}
+
+.result-header {
+  padding: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8faff;
+}
+
+.success-label {
+  color: #174ea6;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.result-header h2 {
+  margin-top: 5px;
+}
+
+.status {
+  padding: 9px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.passed {
+  background: #e8f7ef;
+  color: #16834d;
+}
+
+.failed {
+  background: #fdecec;
+  color: #d92d20;
+}
+
+.student-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  padding: 25px;
+  border-bottom: 1px solid #edf0f5;
+}
+
+.student-summary span {
+  display: block;
+  color: #8a94a6;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.student-summary strong {
+  font-size: 14px;
+}
+
+.result-table {
+  padding: 10px 25px;
+}
+
+.result-row {
+  display: grid;
+  grid-template-columns: 1fr 120px 80px;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid #edf0f5;
+}
+
+.result-row small {
+  display: block;
+  color: #8a94a6;
+  margin-top: 3px;
+}
+
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  padding: 25px;
+}
+
+.summary-card {
+  background: #f7f9fc;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.summary-card span {
+  color: #718096;
+  font-size: 13px;
+}
+
+.summary-card strong {
+  display: block;
+  margin-top: 8px;
+  color: #174ea6;
+  font-size: 25px;
+}
+
+.summary-card small {
+  font-size: 12px;
+  color: #8a94a6;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  color: #8a94a6;
+  font-size: 12px;
+}
+
+@media (max-width: 750px) {
+  .header {
+    padding: 18px 4%;
+  }
+
+  .badge {
+    display: none;
+  }
+
+  .student-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .formula {
+    width: 100%;
+    text-align: center;
+  }
+
+  .student-summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .summary-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 500px) {
+  .container {
+    width: 94%;
+  }
+
+  .card {
+    padding: 18px;
+  }
+
+  .logo h1 {
+    font-size: 18px;
+  }
+
+  .logo-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .button-area {
+    flex-direction: column;
+  }
+
+  .calculate-button,
+  .reset-button {
+    width: 100%;
+  }
+
+  .student-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .result-row {
+    grid-template-columns: 1fr 80px 50px;
+  }
+}
