@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle} + ' - VIT Result Portal'">Add Student</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header class="navbar">
+    <div>
+        <div class="brand">VIT <span>Result</span> Portal</div>
+        <span class="tagline">Semester Result Preparation System</span>
+    </div>
+    <nav>
+        <a th:href="@{/}">Dashboard</a>
+        <a th:href="@{/students/new}">+ Add Student</a>
+    </nav>
+</header>
+
+<main class="container">
+    <h1 class="page-title" th:text="${pageTitle}">Add Student</h1>
+    <p class="page-subtitle">Enter student details and marks for all 4 subjects. MSE is out of 50 (30% weight), ESE is out of 100 (70% weight).</p>
+
+    <form th:action="@{/students/save}" th:object="${studentForm}" method="post">
+        <input type="hidden" th:field="*{id}">
+
+        <div class="card">
+            <h3 class="section-heading" style="margin-top:0;">Student Details</h3>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="regNo">Registration Number</label>
+                    <input id="regNo" type="text" th:field="*{regNo}" placeholder="e.g. 21BCE0001" required>
+                </div>
+                <div class="form-group">
+                    <label for="studentName">Student Name</label>
+                    <input id="studentName" type="text" th:field="*{studentName}" placeholder="Full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="branch">Branch</label>
+                    <input id="branch" type="text" th:field="*{branch}" placeholder="e.g. Computer Science Engineering" required>
+                </div>
+                <div class="form-group">
+                    <label for="semester">Semester</label>
+                    <input id="semester" type="number" min="1" max="8" th:field="*{semester}" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3 class="section-heading" style="margin-top:0;">Subject Marks</h3>
+
+            <div class="subjects-grid">
+                <div class="subject-card" th:each="mark, stat : *{marks}">
+                    <input type="hidden" th:field="*{marks[__${stat.index}__].subjectId}">
+                    <input type="hidden" th:field="*{marks[__${stat.index}__].subjectName}">
+
+                    <h4 th:text="${mark.subjectName}">Subject Name</h4>
+                    <span class="code" th:text="'Subject ' + ${stat.count}">Subject 1</span>
+
+                    <div class="marks-row">
+                        <div class="form-group">
+                            <label>MSE <small>(out of 50)</small></label>
+                            <input class="mse-input" type="number" step="0.5" min="0" max="50"
+                                   th:field="*{marks[__${stat.index}__].mseMarks}" required>
+                        </div>
+                        <div class="form-group">
+                            <label>ESE <small>(out of 100)</small></label>
+                            <input class="ese-input" type="number" step="0.5" min="0" max="100"
+                                   th:field="*{marks[__${stat.index}__].eseMarks}" required>
+                        </div>
+                    </div>
+                    <div class="live-total">Weighted total: 0.00 / 100</div>
+                </div>
+            </div>
+
+            <div class="live-total" id="grandTotalPreview" style="margin-top:18px; font-size:0.95rem;">
+                Overall (live): 0.00 / 400 (0.00%)
+            </div>
+        </div>
+
+        <div class="form-footer">
+            <button type="submit" class="btn btn-gold">Save Student &amp; Marks</button>
+            <a class="btn btn-outline" th:href="@{/}">Cancel</a>
+        </div>
+    </form>
+</main>
+
+<footer class="site-footer">VIT Semester Result Preparation System &middot; Spring Boot + MySQL</footer>
+
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>

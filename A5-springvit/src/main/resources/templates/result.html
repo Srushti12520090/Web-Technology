@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="'Result - ' + ${summary.student.studentName}">Result</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header class="navbar">
+    <div>
+        <div class="brand">VIT <span>Result</span> Portal</div>
+        <span class="tagline">Semester Result Preparation System</span>
+    </div>
+    <nav>
+        <a th:href="@{/}">Dashboard</a>
+        <a th:href="@{/students/new}">+ Add Student</a>
+    </nav>
+</header>
+
+<main class="container">
+    <div class="print-bar">
+        <button class="btn btn-outline" onclick="window.print()">Print / Save as PDF</button>
+    </div>
+
+    <div class="card">
+        <div class="actions-bar">
+            <h1 class="page-title" style="margin-bottom:0;">Semester Result</h1>
+            <span class="result-badge"
+                  th:classappend="${summary.overallResult == 'PASS'} ? 'pass' : 'fail'"
+                  th:text="${summary.overallResult}">PASS</span>
+        </div>
+
+        <div class="student-info">
+            <div class="info-item">
+                <div class="label">Registration No</div>
+                <div class="value" th:text="${summary.student.regNo}">21BCE0001</div>
+            </div>
+            <div class="info-item">
+                <div class="label">Student Name</div>
+                <div class="value" th:text="${summary.student.studentName}">Student Name</div>
+            </div>
+            <div class="info-item">
+                <div class="label">Branch</div>
+                <div class="value" th:text="${summary.student.branch}">CSE</div>
+            </div>
+            <div class="info-item">
+                <div class="label">Semester</div>
+                <div class="value" th:text="${summary.student.semester}">3</div>
+            </div>
+        </div>
+
+        <h3 class="section-heading">Subject-wise Marks &amp; Grades</h3>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>MSE (30%)</th>
+                    <th>ESE (70%)</th>
+                    <th>Total / 100</th>
+                    <th>Grade</th>
+                    <th>Grade Point</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="sr : ${summary.subjectResults}">
+                    <td data-label="Subject">
+                        <strong th:text="${sr.subjectName}">Subject</strong><br>
+                        <small th:text="${sr.subjectCode}" style="color:#888;">CODE</small>
+                    </td>
+                    <td data-label="MSE (30%)"
+                        th:text="${sr.mseMarks} + ' / 50 -> ' + ${#numbers.formatDecimal(sr.scaledMse,1,2)}">--</td>
+                    <td data-label="ESE (70%)"
+                        th:text="${sr.eseMarks} + ' / 100 -> ' + ${#numbers.formatDecimal(sr.scaledEse,1,2)}">--</td>
+                    <td data-label="Total / 100" th:text="${#numbers.formatDecimal(sr.total,1,2)}">--</td>
+                    <td data-label="Grade"><span class="grade-pill" th:text="${sr.grade}">A</span></td>
+                    <td data-label="Grade Point" th:text="${sr.gradePoint}">8</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="summary-strip">
+            <div class="summary-box">
+                <div class="num" th:text="${#numbers.formatDecimal(summary.totalScored,1,2)} + ' / ' + ${#numbers.formatDecimal(summary.totalOutOf,1,0)}">-- / 400</div>
+                <div class="lbl">Total Marks</div>
+            </div>
+            <div class="summary-box">
+                <div class="num" th:text="${#numbers.formatDecimal(summary.overallPercentage,1,2)} + '%'">--%</div>
+                <div class="lbl">Overall Percentage</div>
+            </div>
+            <div class="summary-box">
+                <div class="num" th:text="${#numbers.formatDecimal(summary.sgpa,1,2)}">--</div>
+                <div class="lbl">SGPA</div>
+            </div>
+        </div>
+    </div>
+
+    <a class="btn btn-outline" th:href="@{/}">&larr; Back to Dashboard</a>
+</main>
+
+<footer class="site-footer">VIT Semester Result Preparation System &middot; Spring Boot + MySQL</footer>
+</body>
+</html>

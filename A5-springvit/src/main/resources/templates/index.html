@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIT Semester Result System</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header class="navbar">
+    <div>
+        <div class="brand">VIT <span>Result</span> Portal</div>
+        <span class="tagline">Semester Result Preparation System</span>
+    </div>
+    <nav>
+        <a th:href="@{/}">Dashboard</a>
+        <a th:href="@{/students/new}">+ Add Student</a>
+    </nav>
+</header>
+
+<main class="container">
+    <h1 class="page-title">Student Dashboard</h1>
+    <p class="page-subtitle">Manage students and view their computed semester results (4 subjects &middot; MSE 30% + ESE 70%).</p>
+
+    <div class="card">
+        <div class="actions-bar">
+            <div><strong th:text="${#lists.size(students)}">0</strong> student(s) registered</div>
+            <a class="btn btn-gold" th:href="@{/students/new}">+ Add New Student</a>
+        </div>
+
+        <div class="table-wrap" th:if="${not #lists.isEmpty(students)}">
+            <table>
+                <thead>
+                <tr>
+                    <th>Reg No</th>
+                    <th>Name</th>
+                    <th>Branch</th>
+                    <th>Semester</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="s : ${students}">
+                    <td data-label="Reg No" th:text="${s.regNo}">21BCE0001</td>
+                    <td data-label="Name" th:text="${s.studentName}">Student Name</td>
+                    <td data-label="Branch" th:text="${s.branch}">CSE</td>
+                    <td data-label="Semester" th:text="${s.semester}">3</td>
+                    <td data-label="Actions">
+                        <a class="btn btn-sm" th:href="@{'/students/' + ${s.id} + '/result'}">Result</a>
+                        <a class="btn btn-sm btn-outline" th:href="@{'/students/' + ${s.id} + '/edit'}">Edit</a>
+                        <a class="btn btn-sm btn-danger"
+                           th:href="@{'/students/' + ${s.id} + '/delete'}"
+                           onclick="return confirm('Delete this student and their marks?');">Delete</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="empty-state" th:if="${#lists.isEmpty(students)}">
+            No students yet. Click <strong>"Add New Student"</strong> to enter marks for the first student.
+        </div>
+    </div>
+</main>
+
+<footer class="site-footer">VIT Semester Result Preparation System &middot; Spring Boot + MySQL</footer>
+</body>
+</html>
