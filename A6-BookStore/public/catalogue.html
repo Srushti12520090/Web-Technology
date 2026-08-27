@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalogue | BookNest</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav>
+  <div class="logo">📚 BookNest</div>
+  <button class="menu" onclick="toggleMenu()">☰</button>
+  <div class="navlinks" id="navlinks"><a href="index.html">Home</a><a href="catalogue.html">Catalogue</a><a href="login.html">Login</a><a href="register.html">Register</a></div>
+</nav>
+<main class="section">
+  <div class="section-title"><div><span class="badge">EXPLORE</span><h1>Book Catalogue</h1><p>Find your next favourite book.</p></div></div>
+  <div class="filters">
+    <input id="search" placeholder="Search by title or author...">
+    <select id="category"><option>All</option><option>Programming</option><option>Technology</option><option>Fiction</option><option>Business</option><option>Self Help</option></select>
+    <select id="sort"><option value="">Sort by</option><option value="price-asc">Price: Low to High</option><option value="price-desc">Price: High to Low</option><option value="rating">Rating</option></select>
+    <button class="btn" onclick="loadBooks()">Search</button>
+  </div>
+  <div id="books" class="book-grid"></div>
+</main>
+<footer>© 2026 BookNest — Online Book Store</footer>
+<script src="js/catalogue.js"></script>
+</body>
+</html>

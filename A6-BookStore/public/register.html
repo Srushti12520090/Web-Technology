@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register | BookNest</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<nav><div class="logo">📚 BookNest</div><div class="navlinks"><a href="index.html">Home</a><a href="catalogue.html">Catalogue</a><a href="login.html">Login</a></div></nav>
+<main class="auth-page">
+  <form class="auth-card" id="registerForm">
+    <h1>Create account</h1><p>Join BookNest and start exploring.</p>
+    <label>Full Name</label><input type="text" name="name" required placeholder="Your name">
+    <label>Email</label><input type="email" name="email" required placeholder="you@example.com">
+    <label>Phone</label><input type="tel" name="phone" required placeholder="9876543210">
+    <label>Password</label><input type="password" name="password" minlength="6" required placeholder="Minimum 6 characters">
+    <label>Confirm Password</label><input type="password" name="confirmPassword" required placeholder="Repeat password">
+    <button class="btn full" type="submit">Create Account</button>
+    <div id="message"></div>
+    <p class="center">Already registered? <a href="login.html">Login</a></p>
+  </form>
+</main>
+<script src="js/auth.js"></script>
+</body>
+</html>
