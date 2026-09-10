@@ -1,0 +1,1 @@
+import UMLClassDiagramGenerator from './uml'; export default function App() { return <UMLClassDiagramGenerator />; }
