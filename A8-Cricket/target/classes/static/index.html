@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cricket Live</title>
+  <meta name="description" content="Real-time cricket scores, scorecards and match summaries">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23b3261e'/%3E%3Cpath d='M5 11c8 3 14 3 22 0M5 21c8-3 14-3 22 0' stroke='%23fff' stroke-width='1.6' fill='none' stroke-dasharray='2 2.4'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="ball" aria-hidden="true"></span>
+      <h1>Cricket Live</h1>
+    </div>
+    <div class="topbar-actions">
+      <span id="conn" class="conn" role="status" data-state="connecting"><i></i><span>Connecting…</span></span>
+      <button id="newMatchBtn" class="btn primary">New match</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar" aria-label="Matches">
+      <div id="matchList" class="match-list"></div>
+    </aside>
+
+    <section class="stage" aria-live="off">
+      <div id="empty" class="empty">Select a match to follow it live.</div>
+      <div id="match" hidden>
+        <div class="scoreboard" id="scoreboard"></div>
+        <nav class="tabs" role="tablist" aria-label="Match views">
+          <button role="tab" data-tab="live" aria-selected="true">Live</button>
+          <button role="tab" data-tab="scorecard" aria-selected="false">Scorecard</button>
+          <button role="tab" data-tab="commentary" aria-selected="false">Commentary</button>
+          <button role="tab" data-tab="summary" aria-selected="false">Summary</button>
+        </nav>
+        <div id="tab-live" class="tabpanel"></div>
+        <div id="tab-scorecard" class="tabpanel" hidden></div>
+        <div id="tab-commentary" class="tabpanel" hidden></div>
+        <div id="tab-summary" class="tabpanel" hidden></div>
+      </div>
+    </section>
+
+    <aside class="leaders" aria-label="Leaderboards">
+      <div id="leaders"></div>
+    </aside>
+  </main>
+
+  <dialog id="newMatchDialog">
+    <form method="dialog" id="newMatchForm">
+      <h2>New match</h2>
+      <label>Team A <select id="teamA"></select></label>
+      <label>Team B <select id="teamB"></select></label>
+      <label>Overs per side <input id="overs" type="number" min="1" max="50" value="10"></label>
+      <label class="check"><input id="autoSim" type="checkbox" checked> Simulate live feed</label>
+      <p id="formError" class="error" hidden></p>
+      <div class="dialog-actions">
+        <button value="cancel" class="btn" formnovalidate>Cancel</button>
+        <button id="createBtn" value="ok" class="btn primary">Start match</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
